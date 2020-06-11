@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+{%block title%}
+
+{%endblock%}
+{%block profile%}
+<div class="fh5co-bio">
+    <figure>
+        <img src="{{user.profile_pic.url}}" alt="Free HTML5 Bootstrap Template" class="img-responsive">
+    </figure>
+    <h3 class="heading">About fsMe</h3>
+    <h2>{{user.name}}</h2>
+    <h3>{{user.name.email}}</h3>
+    <p>{{user.details}}</p>
+    
+    <ul class="fh5co-social">
+        <li><a href="#"><i class="icon-twitter"></i></a></li>
+        <li><a href="#"><i class="icon-facebook"></i></a></li>
+        <li><a href="#"><i class="icon-instagram"></i></a></li>
+    </ul>
+</div>
+
+{%endblock%}
+
+{%block stylesheet%}
+
+{%endblock%}
+
+{%block content%}
+<div class="container">
+    <button class="btn btn-secondary pull pull-right"><a href="{%url 'Blog:create'%}">Create new post</a></button>
+    <table class="table table stripped">
+        <thead>
+            <tr>
+                <td>Title</td>
+                <td>Posted on</td>
+                <td>Action</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            {%for p in post%}
+            <tr>
+            <td>{{p.title}}</td>
+            <td>{{p.posted_on}}</td>
+            <td><a href="{%url 'Blog:delete' pid=p.id%}">Delete</a>|<a href="{%url 'Blog:update' pid=p.id%}">Edit</a></td>
+            </tr>
+            {%endfor%}
+        </tbody>
+
+    </table>
+</div>
+
+{%endblock%}

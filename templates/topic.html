@@ -1,0 +1,43 @@
+{%extends 'base.html'%}
+{%block title%}
+Topic show here
+{%endblock%}
+
+{%block stylesheet%}
+
+{%endblock%}
+
+{%block content%}
+<div class="container">
+    
+    {% if request.user.is_authenticated and request.user.is_staff or request.user.is_superuser%}
+        <button class="btn btn-secondary pull pull-right"><a href="{%url 'Blog:create_topic'%}">Create new Category</a></button>
+    {% endif %}
+        
+   
+    <table class="table table stripped">
+        <thead>
+            <tr>
+                <td>Topic Name</td>
+                {% if request.user.is_authenticated and request.user.is_staff or request.user.is_superuser%}
+                <td>Action</td>
+                {% endif %}
+                
+
+            </tr>
+        </thead>
+        <tbody>
+            {%for p in post%}
+            <tr>
+                <td><a href="{%url 'Blog:category' abc=p.name%}">{{p.name}}</a></td>
+                {% if request.user.is_authenticated and request.user.is_staff or request.user.is_superuser%}
+            <td><a href="">Delete</a>|<a href="">Edit</a></td>
+                {% endif %}
+                
+            </tr>
+            {%endfor%}
+        </tbody>
+
+    </table>
+</div>
+{%endblock%}
